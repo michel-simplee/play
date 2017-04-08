@@ -17,8 +17,8 @@ node {
 stage 'Test'
 node {
   parallel (
-     phase1: { sh "echo slow; sleep 20s;" },
-     phase2: { sh "echo fast; sleep 10s;" }
+     phase1: { node { sh "echo slow; sleep 20s;" }},
+     phase2: { node { sh "echo fast; sleep 10s;" }}
   )
 
 }
