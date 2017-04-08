@@ -6,11 +6,8 @@ node {
 	checkout scm
 	sh '''#!/bin/bash
                 change_path=$(git diff-tree --no-commit-id --name-only -r HEAD)
-                if [[ "$change_path" =~ "consumer" ]] || [[ "$change_path" =~ "gems" ]]
-                then
-                     echo "TESTING"
-                else
-		    echo 'Changes: "$change_path"'
+                if [[ "$change_path" != "consumer" ]] || [[ "$change_path" != "gems" ]]
+		    echo "Changes: $change_path"
                     echo " NO TEST FOR THIS PATH "
 		    exit 1
                 fi
